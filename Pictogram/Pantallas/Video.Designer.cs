@@ -28,55 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_resetfilter = new System.Windows.Forms.Button();
             this.btn_upload_video = new System.Windows.Forms.Button();
             this.pb_video = new System.Windows.Forms.PictureBox();
             this.btn_pause_play = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.blue_histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.green_histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.red_histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.general_histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.pb_histogramaB = new System.Windows.Forms.PictureBox();
+            this.pb_histogramaG = new System.Windows.Forms.PictureBox();
+            this.pb_histogramaR = new System.Windows.Forms.PictureBox();
+            this.pb_histograma = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FlowPanelFilters = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pb_video)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.blue_histogram)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.green_histogram)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.red_histogram)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.general_histogram)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histograma)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button3
+            // btn_resetfilter
             // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(429, 299);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 38);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Reset filters";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_resetfilter.Enabled = false;
+            this.btn_resetfilter.Location = new System.Drawing.Point(429, 299);
+            this.btn_resetfilter.Name = "btn_resetfilter";
+            this.btn_resetfilter.Size = new System.Drawing.Size(120, 38);
+            this.btn_resetfilter.TabIndex = 17;
+            this.btn_resetfilter.Text = "Reset filters";
+            this.btn_resetfilter.UseVisualStyleBackColor = true;
+            this.btn_resetfilter.Click += new System.EventHandler(this.btn_resetfilter_Click);
             // 
             // btn_upload_video
             // 
@@ -101,6 +82,7 @@
             // 
             // btn_pause_play
             // 
+            this.btn_pause_play.Enabled = false;
             this.btn_pause_play.Location = new System.Drawing.Point(235, 299);
             this.btn_pause_play.Name = "btn_pause_play";
             this.btn_pause_play.Size = new System.Drawing.Size(120, 38);
@@ -111,10 +93,10 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.blue_histogram);
-            this.groupBox3.Controls.Add(this.green_histogram);
-            this.groupBox3.Controls.Add(this.red_histogram);
-            this.groupBox3.Controls.Add(this.general_histogram);
+            this.groupBox3.Controls.Add(this.pb_histogramaB);
+            this.groupBox3.Controls.Add(this.pb_histogramaG);
+            this.groupBox3.Controls.Add(this.pb_histogramaR);
+            this.groupBox3.Controls.Add(this.pb_histograma);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox3.Location = new System.Drawing.Point(590, 12);
@@ -124,109 +106,41 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Histograms";
             // 
-            // blue_histogram
+            // pb_histogramaB
             // 
-            chartArea5.Name = "ChartArea1";
-            this.blue_histogram.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.blue_histogram.Legends.Add(legend5);
-            this.blue_histogram.Location = new System.Drawing.Point(6, 467);
-            this.blue_histogram.Name = "blue_histogram";
-            this.blue_histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series13.ChartArea = "ChartArea1";
-            series13.Legend = "Legend1";
-            series13.Name = "Red";
-            series13.ShadowColor = System.Drawing.Color.Silver;
-            series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
-            series14.Name = "Green";
-            series15.ChartArea = "ChartArea1";
-            series15.Legend = "Legend1";
-            series15.Name = "Blue";
-            this.blue_histogram.Series.Add(series13);
-            this.blue_histogram.Series.Add(series14);
-            this.blue_histogram.Series.Add(series15);
-            this.blue_histogram.Size = new System.Drawing.Size(317, 140);
-            this.blue_histogram.TabIndex = 3;
-            this.blue_histogram.Text = "chart4";
+            this.pb_histogramaB.BackColor = System.Drawing.Color.White;
+            this.pb_histogramaB.Location = new System.Drawing.Point(12, 431);
+            this.pb_histogramaB.Name = "pb_histogramaB";
+            this.pb_histogramaB.Size = new System.Drawing.Size(311, 128);
+            this.pb_histogramaB.TabIndex = 7;
+            this.pb_histogramaB.TabStop = false;
             // 
-            // green_histogram
+            // pb_histogramaG
             // 
-            chartArea6.Name = "ChartArea1";
-            this.green_histogram.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.green_histogram.Legends.Add(legend6);
-            this.green_histogram.Location = new System.Drawing.Point(6, 321);
-            this.green_histogram.Name = "green_histogram";
-            this.green_histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series16.ChartArea = "ChartArea1";
-            series16.Legend = "Legend1";
-            series16.Name = "Red";
-            series16.ShadowColor = System.Drawing.Color.Silver;
-            series17.ChartArea = "ChartArea1";
-            series17.Legend = "Legend1";
-            series17.Name = "Green";
-            series18.ChartArea = "ChartArea1";
-            series18.Legend = "Legend1";
-            series18.Name = "Blue";
-            this.green_histogram.Series.Add(series16);
-            this.green_histogram.Series.Add(series17);
-            this.green_histogram.Series.Add(series18);
-            this.green_histogram.Size = new System.Drawing.Size(317, 140);
-            this.green_histogram.TabIndex = 2;
-            this.green_histogram.Text = "chart3";
+            this.pb_histogramaG.BackColor = System.Drawing.Color.White;
+            this.pb_histogramaG.Location = new System.Drawing.Point(12, 297);
+            this.pb_histogramaG.Name = "pb_histogramaG";
+            this.pb_histogramaG.Size = new System.Drawing.Size(311, 128);
+            this.pb_histogramaG.TabIndex = 6;
+            this.pb_histogramaG.TabStop = false;
             // 
-            // red_histogram
+            // pb_histogramaR
             // 
-            chartArea7.Name = "ChartArea1";
-            this.red_histogram.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.red_histogram.Legends.Add(legend7);
-            this.red_histogram.Location = new System.Drawing.Point(6, 175);
-            this.red_histogram.Name = "red_histogram";
-            this.red_histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series19.ChartArea = "ChartArea1";
-            series19.Legend = "Legend1";
-            series19.Name = "Red";
-            series19.ShadowColor = System.Drawing.Color.Silver;
-            series20.ChartArea = "ChartArea1";
-            series20.Legend = "Legend1";
-            series20.Name = "Green";
-            series21.ChartArea = "ChartArea1";
-            series21.Legend = "Legend1";
-            series21.Name = "Blue";
-            this.red_histogram.Series.Add(series19);
-            this.red_histogram.Series.Add(series20);
-            this.red_histogram.Series.Add(series21);
-            this.red_histogram.Size = new System.Drawing.Size(317, 140);
-            this.red_histogram.TabIndex = 1;
-            this.red_histogram.Text = "chart2";
+            this.pb_histogramaR.BackColor = System.Drawing.Color.White;
+            this.pb_histogramaR.Location = new System.Drawing.Point(12, 163);
+            this.pb_histogramaR.Name = "pb_histogramaR";
+            this.pb_histogramaR.Size = new System.Drawing.Size(311, 128);
+            this.pb_histogramaR.TabIndex = 5;
+            this.pb_histogramaR.TabStop = false;
             // 
-            // general_histogram
+            // pb_histograma
             // 
-            chartArea8.Name = "ChartArea1";
-            this.general_histogram.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.general_histogram.Legends.Add(legend8);
-            this.general_histogram.Location = new System.Drawing.Point(6, 29);
-            this.general_histogram.Name = "general_histogram";
-            this.general_histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series22.ChartArea = "ChartArea1";
-            series22.Legend = "Legend1";
-            series22.Name = "Red";
-            series22.ShadowColor = System.Drawing.Color.Silver;
-            series23.ChartArea = "ChartArea1";
-            series23.Legend = "Legend1";
-            series23.Name = "Green";
-            series24.ChartArea = "ChartArea1";
-            series24.Legend = "Legend1";
-            series24.Name = "Blue";
-            this.general_histogram.Series.Add(series22);
-            this.general_histogram.Series.Add(series23);
-            this.general_histogram.Series.Add(series24);
-            this.general_histogram.Size = new System.Drawing.Size(317, 140);
-            this.general_histogram.TabIndex = 0;
-            this.general_histogram.Text = "chart5";
+            this.pb_histograma.BackColor = System.Drawing.Color.White;
+            this.pb_histograma.Location = new System.Drawing.Point(12, 29);
+            this.pb_histograma.Name = "pb_histograma";
+            this.pb_histograma.Size = new System.Drawing.Size(311, 128);
+            this.pb_histograma.TabIndex = 4;
+            this.pb_histograma.TabStop = false;
             // 
             // groupBox1
             // 
@@ -258,7 +172,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btn_pause_play);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btn_resetfilter);
             this.Controls.Add(this.btn_upload_video);
             this.Controls.Add(this.pb_video);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -266,26 +180,26 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pb_video)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.blue_histogram)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.green_histogram)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.red_histogram)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.general_histogram)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histograma)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_resetfilter;
         private System.Windows.Forms.Button btn_upload_video;
         private System.Windows.Forms.PictureBox pb_video;
         private System.Windows.Forms.Button btn_pause_play;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart blue_histogram;
-        private System.Windows.Forms.DataVisualization.Charting.Chart green_histogram;
-        private System.Windows.Forms.DataVisualization.Charting.Chart red_histogram;
-        private System.Windows.Forms.DataVisualization.Charting.Chart general_histogram;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel FlowPanelFilters;
+        private System.Windows.Forms.PictureBox pb_histogramaB;
+        private System.Windows.Forms.PictureBox pb_histogramaG;
+        private System.Windows.Forms.PictureBox pb_histogramaR;
+        private System.Windows.Forms.PictureBox pb_histograma;
     }
 }

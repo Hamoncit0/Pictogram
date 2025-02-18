@@ -83,6 +83,7 @@
     <Compile Include="Componentes\FilterPanel.Designer.cs">
       <DependentUpon>FilterPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Filter.cs" />
     <Compile Include="Pantallas\Camara.cs">
       <SubType>Form</SubType>
     </Compile>

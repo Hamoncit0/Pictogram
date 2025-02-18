@@ -28,50 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.FlowPanelFilters = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.pb_histogramaB = new System.Windows.Forms.PictureBox();
+            this.pb_histogramaG = new System.Windows.Forms.PictureBox();
+            this.pb_histogramaR = new System.Windows.Forms.PictureBox();
+            this.pb_histograma = new System.Windows.Forms.PictureBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histograma)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -107,7 +87,7 @@
             this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Location = new System.Drawing.Point(56, 407);
+            this.groupBox1.Location = new System.Drawing.Point(404, 421);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(169, 173);
             this.groupBox1.TabIndex = 21;
@@ -123,53 +103,6 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Coral";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Location = new System.Drawing.Point(247, 407);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(315, 173);
-            this.groupBox3.TabIndex = 22;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Filtros";
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button6.Location = new System.Drawing.Point(119, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(89, 32);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Negative";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.Location = new System.Drawing.Point(24, 58);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(89, 32);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Negative";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button4.Location = new System.Drawing.Point(24, 20);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 32);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Grayscale";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             this.button3.Enabled = false;
@@ -180,12 +113,38 @@
             this.button3.Text = "Reset filters";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox3.Controls.Add(this.FlowPanelFilters);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Location = new System.Drawing.Point(12, 395);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(386, 224);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Filtros";
+            // 
+            // FlowPanelFilters
+            // 
+            this.FlowPanelFilters.AutoScroll = true;
+            this.FlowPanelFilters.AutoSize = true;
+            this.FlowPanelFilters.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FlowPanelFilters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowPanelFilters.Location = new System.Drawing.Point(3, 26);
+            this.FlowPanelFilters.Name = "FlowPanelFilters";
+            this.FlowPanelFilters.Size = new System.Drawing.Size(380, 195);
+            this.FlowPanelFilters.TabIndex = 14;
+            this.FlowPanelFilters.WrapContents = false;
+            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.chart4);
-            this.groupBox2.Controls.Add(this.chart3);
-            this.groupBox2.Controls.Add(this.chart2);
-            this.groupBox2.Controls.Add(this.chart1);
+            this.groupBox2.Controls.Add(this.pb_histogramaB);
+            this.groupBox2.Controls.Add(this.pb_histogramaG);
+            this.groupBox2.Controls.Add(this.pb_histogramaR);
+            this.groupBox2.Controls.Add(this.pb_histograma);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Location = new System.Drawing.Point(600, 12);
@@ -195,109 +154,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Histograms";
             // 
-            // chart4
+            // pb_histogramaB
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart4.Legends.Add(legend1);
-            this.chart4.Location = new System.Drawing.Point(6, 467);
-            this.chart4.Name = "chart4";
-            this.chart4.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Red";
-            series1.ShadowColor = System.Drawing.Color.Silver;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Green";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Blue";
-            this.chart4.Series.Add(series1);
-            this.chart4.Series.Add(series2);
-            this.chart4.Series.Add(series3);
-            this.chart4.Size = new System.Drawing.Size(317, 140);
-            this.chart4.TabIndex = 3;
-            this.chart4.Text = "chart4";
+            this.pb_histogramaB.BackColor = System.Drawing.Color.White;
+            this.pb_histogramaB.Location = new System.Drawing.Point(12, 431);
+            this.pb_histogramaB.Name = "pb_histogramaB";
+            this.pb_histogramaB.Size = new System.Drawing.Size(311, 128);
+            this.pb_histogramaB.TabIndex = 7;
+            this.pb_histogramaB.TabStop = false;
             // 
-            // chart3
+            // pb_histogramaG
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart3.Legends.Add(legend2);
-            this.chart3.Location = new System.Drawing.Point(6, 321);
-            this.chart3.Name = "chart3";
-            this.chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Red";
-            series4.ShadowColor = System.Drawing.Color.Silver;
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Green";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Blue";
-            this.chart3.Series.Add(series4);
-            this.chart3.Series.Add(series5);
-            this.chart3.Series.Add(series6);
-            this.chart3.Size = new System.Drawing.Size(317, 140);
-            this.chart3.TabIndex = 2;
-            this.chart3.Text = "chart3";
+            this.pb_histogramaG.BackColor = System.Drawing.Color.White;
+            this.pb_histogramaG.Location = new System.Drawing.Point(12, 297);
+            this.pb_histogramaG.Name = "pb_histogramaG";
+            this.pb_histogramaG.Size = new System.Drawing.Size(311, 128);
+            this.pb_histogramaG.TabIndex = 6;
+            this.pb_histogramaG.TabStop = false;
             // 
-            // chart2
+            // pb_histogramaR
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart2.Legends.Add(legend3);
-            this.chart2.Location = new System.Drawing.Point(6, 175);
-            this.chart2.Name = "chart2";
-            this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Red";
-            series7.ShadowColor = System.Drawing.Color.Silver;
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Green";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Blue";
-            this.chart2.Series.Add(series7);
-            this.chart2.Series.Add(series8);
-            this.chart2.Series.Add(series9);
-            this.chart2.Size = new System.Drawing.Size(317, 140);
-            this.chart2.TabIndex = 1;
-            this.chart2.Text = "chart2";
+            this.pb_histogramaR.BackColor = System.Drawing.Color.White;
+            this.pb_histogramaR.Location = new System.Drawing.Point(12, 163);
+            this.pb_histogramaR.Name = "pb_histogramaR";
+            this.pb_histogramaR.Size = new System.Drawing.Size(311, 128);
+            this.pb_histogramaR.TabIndex = 5;
+            this.pb_histogramaR.TabStop = false;
             // 
-            // chart1
+            // pb_histograma
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart1.Legends.Add(legend4);
-            this.chart1.Location = new System.Drawing.Point(6, 29);
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "Red";
-            series10.ShadowColor = System.Drawing.Color.Silver;
-            series11.ChartArea = "ChartArea1";
-            series11.Legend = "Legend1";
-            series11.Name = "Green";
-            series12.ChartArea = "ChartArea1";
-            series12.Legend = "Legend1";
-            series12.Name = "Blue";
-            this.chart1.Series.Add(series10);
-            this.chart1.Series.Add(series11);
-            this.chart1.Series.Add(series12);
-            this.chart1.Size = new System.Drawing.Size(317, 140);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.pb_histograma.BackColor = System.Drawing.Color.White;
+            this.pb_histograma.Location = new System.Drawing.Point(12, 29);
+            this.pb_histograma.Name = "pb_histograma";
+            this.pb_histograma.Size = new System.Drawing.Size(311, 128);
+            this.pb_histograma.TabIndex = 4;
+            this.pb_histograma.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(308, 341);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 38);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "Encender camara";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Camara
             // 
@@ -305,9 +205,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(155)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(941, 634);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
@@ -319,11 +220,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histogramaR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_histograma)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -335,15 +237,15 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.FlowLayoutPanel FlowPanelFilters;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart4;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.PictureBox pb_histogramaB;
+        private System.Windows.Forms.PictureBox pb_histogramaG;
+        private System.Windows.Forms.PictureBox pb_histogramaR;
+        private System.Windows.Forms.PictureBox pb_histograma;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button button2;
     }
 }

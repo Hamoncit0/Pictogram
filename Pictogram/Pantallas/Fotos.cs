@@ -25,10 +25,9 @@ namespace Pictogram.Pantallas
         }
 
 
-
         private void AddFilterPanels()
         {
-            string[] filterNames = { "Gris", "Sepia", "Brillo", "Inverso" };
+            string[] filterNames = { "Gris", "Sepia", "Brillo", "Inverso", "Ojo de pescado", "Umbral", "Realce de bordes", "Camara termica", "Ruido", "Viñeta", "Espejo", "Contraste", "Mosaico" };
 
             foreach (string filter in filterNames)
             {
@@ -47,7 +46,7 @@ namespace Pictogram.Pantallas
 
             Bitmap bmp = new Bitmap(originalImage);
             ColorMatrix colorMatrix = null;
-
+            Filter filter = new Filter();
             switch (filterType)
             {
                 case "Gris":
@@ -92,6 +91,70 @@ namespace Pictogram.Pantallas
                     new float[] { 0, 0, 0, 1, 0 },
                     new float[] { 0.1f, 0.1f, 0.1f, 0, 1 }
                     });
+                    break;
+
+                case "Ojo de pescado":
+                    bmp = filter.ApplyFishEye(bmp);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Umbral":
+                    bmp = filter.ApplyThreshold(bmp, 120);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Realce de bordes":
+                    bmp = filter.ApplyEdgeEnhancement(bmp);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Camara termica":
+                    bmp = filter.ApplyThermalCameraFilter(bmp);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Ruido":
+                    bmp = filter.ApplyNoise(bmp, 144);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Viñeta":
+                    bmp = filter.ApplyVignette(bmp);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Espejo":
+                    bmp = filter.ApplyPrismEffect(bmp);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Contraste":
+                    bmp = filter.ApplyCartoonEffect(bmp);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
+                    break;
+                case "Mosaico":
+                    bmp = filter.ApplyMosaic(bmp,20);
+                    CalculateHistogram(bmp);
+                    pb_picture.Image = bmp;
+                    if (!btn_reset_picture_filter.Enabled)
+                        btn_reset_picture_filter.Enabled = true;
                     break;
             }
 
@@ -269,4 +332,5 @@ namespace Pictogram.Pantallas
         }
 
     }
+
 }

@@ -16,6 +16,18 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+
+                // Liberar recursos administrados
+                if (_capture != null)
+                {
+                    _capture.Dispose();
+                    _capture = null;
+                }
+                if (_frame != null)
+                {
+                    _frame.Dispose();
+                    _frame = null;
+                }
             }
             base.Dispose(disposing);
         }

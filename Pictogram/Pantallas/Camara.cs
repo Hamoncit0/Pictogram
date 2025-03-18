@@ -24,7 +24,8 @@ namespace Pictogram.Pantallas
         private Timer _timer;
         private string _currentFilter = "None"; // Filtro actual
         private Mat _frame;
-
+        private Color _selectedColor = Color.Empty; // Color seleccionado
+        private int _tolerance = 50; // Tolerancia para la comparación de colores
         public Camara()
         {
             InitializeComponent();
@@ -51,10 +52,8 @@ namespace Pictogram.Pantallas
                     return;
                 }
 
-                // Cambiar el texto del botón
-                btn_turnoncamara.Text = "Apagar Cámara";
+                btn_turnoncamara.Text = "Turn off camera";
 
-                // Iniciar el Timer
                 _timer.Start();
             }
             else
@@ -64,10 +63,8 @@ namespace Pictogram.Pantallas
                 _capture.Dispose();
                 _capture = null;
 
-                // Cambiar el texto del botón
-                btn_turnoncamara.Text = "Encender Cámara";
+                btn_turnoncamara.Text = "Turn on camera";
 
-                // Limpiar el PictureBox
                 pb_camara.Image = null;
             }
         }
@@ -76,11 +73,11 @@ namespace Pictogram.Pantallas
         {
             if (_frame != null)
             {
-                _frame.Dispose(); // Liberar memoria del frame anterior
+                _frame.Dispose();
             }
 
             _frame = new Mat();
-            // Leer un frame de la cámara
+
             using (_frame = _capture.QueryFrame())
             {
                 if (_frame != null)
@@ -90,6 +87,7 @@ namespace Pictogram.Pantallas
                     double aspectRatio = (double)_frame.Width / _frame.Height;
                     int newWidth = pb_camara.Width;
                     int newHeight = (int)(newWidth / aspectRatio);
+
 
                     if (newHeight > pb_camara.Height)
                     {
@@ -106,13 +104,55 @@ namespace Pictogram.Pantallas
                     // Mostrar el frame en el PictureBox
                     pb_camara.Image = bitmap;
 
+
                     ApplyFilterToFrame();
+
+                    // Aplicar el filtro de color si hay un color seleccionado
+                    if (_selectedColor != Color.Empty)
+                    {
+
+                        bitmap = ApplyColorFilter((Bitmap)pb_camara.Image, _selectedColor, _tolerance);
+                        // Mostrar el frame en el PictureBox
+                        pb_camara.Image = bitmap;
+                    }
 
                     ComputeHistogramFromPictureBox();
                     // Liberar el frame redimensionado
                     resizedFrame.Dispose();
                 }
             }
+        }
+        // Aplicar el filtro de color
+        private Bitmap ApplyColorFilter(Bitmap bitmap, Color selectedColor, int tolerance)
+        {
+            Bitmap filteredBitmap = new Bitmap(bitmap.Width, bitmap.Height);
+
+            for (int y = 0; y < bitmap.Height; y++)
+            {
+                for (int x = 0; x < bitmap.Width; x++)
+                {
+                    Color pixelColor = bitmap.GetPixel(x, y);
+
+                    // Comparar el color del píxel con el color seleccionado
+                    if (IsColorSimilar(pixelColor, selectedColor, tolerance))
+                    {
+                        filteredBitmap.SetPixel(x, y, pixelColor); // Mostrar el píxel
+                    }
+                    else
+                    {
+                        filteredBitmap.SetPixel(x, y, Color.Black); // Ocultar el píxel
+                    }
+                }
+            }
+
+            return filteredBitmap;
+        }
+
+        private bool IsColorSimilar(Color color1, Color color2, int tolerance)
+        {
+            return Math.Abs(color1.R - color2.R) <= tolerance &&
+                   Math.Abs(color1.G - color2.G) <= tolerance &&
+                   Math.Abs(color1.B - color2.B) <= tolerance;
         }
 
         // Liberar recursos cuando el formulario se cierre
@@ -134,17 +174,22 @@ namespace Pictogram.Pantallas
             base.OnFormClosed(e);
         }
 
-        // Agrega los paneles de filtro
         private void AddFilterPanels()
         {
+
             string[] filterNames = { "Gris", "Sepia", "Brillo", "Inverso", "Ojo de pescado", "Umbral", "Realce de bordes", "Camara termica", "Ruido", "Viñeta", "Espejo", "Contraste", "Mosaico" };
 
             foreach (string filter in filterNames)
             {
+                string imagePath = @"Videos\" + filter + ".png";
+                System.Drawing.Image loadedImage = System.Drawing.Image.FromFile(imagePath);
+
                 FilterPanel panel = new FilterPanel
                 {
-                    FilterName = filter
+                    FilterName = filter,
+                    FilterImage = loadedImage
                 };
+                panel.setPanelCenter();
                 panel.FilterClicked += (s, e) => ApplyFilter(((FilterPanel)s).FilterName);
                 FlowPanelFilters.Controls.Add(panel);
             }
@@ -1018,8 +1063,145 @@ namespace Pictogram.Pantallas
         private void btn_resetfilter_Click(object sender, EventArgs e)
         {
             _currentFilter = "None";
+            _selectedColor = Color.Empty;
             btn_resetfilter.Enabled = false;
         }
+        private bool _detectColorEnabled = false;
+
+        private void btn_detectcolor_Click(object sender, EventArgs e)
+        {
+            // Activar o desactivar la detección de color
+            _detectColorEnabled = !_detectColorEnabled;
+
+            // Cambiar el texto del botón según el estado
+            btn_detectcolor.Text = _detectColorEnabled ? "Turn off Detection" : "Detect color";
+
+            // Mostrar un mensaje de estado (opcional)
+            if (_detectColorEnabled)
+            {
+                _selectedColor = Color.Empty;
+                MessageBox.Show("Color detection activated. Click anywhere in the picture to detect colors.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        private void pb_camara_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Verificar si la detección de color está activa
+            if (_detectColorEnabled && pb_camara.Image != null)
+            {
+                // Obtener las coordenadas del clic
+                int x = e.X;
+                int y = e.Y;
+
+                // Obtener el color del píxel en las coordenadas del clic
+                Bitmap bitmap = (Bitmap)pb_camara.Image;
+                Color color = bitmap.GetPixel(x, y);
+
+                // Mostrar el color en otro PictureBox (por ejemplo, pb_color)
+                pb_color.BackColor = color;
+
+                // Mostrar los valores RGB, HEX y CIELAB
+                lbl_colorRGB.Text = $"RGB: ({color.R}, {color.G}, {color.B})";
+                lbl_colorHEX.Text = $"HEX: {RgbToHex(color)}";
+                double[] cielab = RgbToCielab(color);
+                lbl_colorCIELAB.Text = $"CIELAB: (L:{cielab[0]:F2}, a:{cielab[1]:F2}, b:{cielab[2]:F2})";
+            }
+        }
+
+        // Convertir RGB a HEX
+        private string RgbToHex(Color color)
+        {
+            return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+        }
+
+        // Convertir RGB a CIELAB
+        private double[] RgbToCielab(Color color)
+        {
+            // Convertir RGB a XYZ
+            double r = color.R / 255.0;
+            double g = color.G / 255.0;
+            double b = color.B / 255.0;
+
+            r = (r > 0.04045) ? Math.Pow((r + 0.055) / 1.055, 2.4) : r / 12.92;
+            g = (g > 0.04045) ? Math.Pow((g + 0.055) / 1.055, 2.4) : g / 12.92;
+            b = (b > 0.04045) ? Math.Pow((b + 0.055) / 1.055, 2.4) : b / 12.92;
+
+            double x = r * 0.4124564 + g * 0.3575761 + b * 0.1804375;
+            double y = r * 0.2126729 + g * 0.7151522 + b * 0.0721750;
+            double z = r * 0.0193339 + g * 0.1191920 + b * 0.9503041;
+
+            // Convertir XYZ a CIELAB
+            x /= 95.047;
+            y /= 100.000;
+            z /= 108.883;
+
+            x = (x > 0.008856) ? Math.Pow(x, 1.0 / 3.0) : (7.787 * x) + (16.0 / 116.0);
+            y = (y > 0.008856) ? Math.Pow(y, 1.0 / 3.0) : (7.787 * y) + (16.0 / 116.0);
+            z = (z > 0.008856) ? Math.Pow(z, 1.0 / 3.0) : (7.787 * z) + (16.0 / 116.0);
+
+            double l = (116.0 * y) - 16.0;
+            double a = 500.0 * (x - y);
+            double bLab = 200.0 * (y - z);
+
+            return new double[] { l, a, bLab };
+        }
+
+        private void btn_pickcolor_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _selectedColor = colorDialog.Color;
+                    pb_color.BackColor = _selectedColor;
+                    lbl_colorRGB.Text = $"RGB: ({_selectedColor.R}, {_selectedColor.G}, {_selectedColor.B})";
+                    lbl_colorHEX.Text = $"HEX: {RgbToHex(_selectedColor)}";
+                    double[] cielab = RgbToCielab(_selectedColor);
+                    lbl_colorCIELAB.Text = $"CIELAB: ({cielab[0]:F2}, {cielab[1]:F2}, {cielab[2]:F2})";
+                }
+            }
+        }
+
+        private void btn_capture_Click(object sender, EventArgs e)
+        {
+                if (pb_camara.Image == null) return;
+
+                // Abrir un cuadro de diálogo para guardar el archivo
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Imagen PNG|*.png|Imagen JPEG|*.jpg|Imagen BMP|*.bmp";
+                    saveFileDialog.Title = "Guardar imagen";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Obtener la extensión seleccionada
+                        string extension = System.IO.Path.GetExtension(saveFileDialog.FileName).ToLower();
+
+                        // Guardar la imagen en el formato seleccionado
+                        switch (extension)
+                        {
+                            case ".png":
+                            pb_camara.Image.Save(saveFileDialog.FileName, ImageFormat.Png);
+                                break;
+                            case ".jpg":
+                            pb_camara.Image.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+                                break;
+                            case ".bmp":
+                                pb_camara.Image.Save(saveFileDialog.FileName, ImageFormat.Bmp);
+                                break;
+                            default:
+                                MessageBox.Show("Formato no soportado.");
+                                break;
+                        }
+
+                        MessageBox.Show("Picture saved successfully", "HUh", MessageBoxButtons.OK);
+                    }
+                }
+            
+        }
     }
+
+
 }
 

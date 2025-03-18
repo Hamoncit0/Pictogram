@@ -28,12 +28,18 @@ namespace Pictogram.Pantallas
         private void AddFilterPanels()
         {
             string[] filterNames = { "Gris", "Sepia", "Brillo", "Inverso", "Ojo de pescado", "Umbral", "Realce de bordes", "Camara termica", "Ruido", "Viñeta", "Espejo", "Contraste", "Mosaico" };
+            
 
             foreach (string filter in filterNames)
             {
+
+                string imagePath = @"Fotos\" + filter + ".png";
+                Image loadedImage = Image.FromFile(imagePath);
+
                 FilterPanel panel = new FilterPanel
                 {
-                    FilterName = filter
+                    FilterName = filter,
+                    FilterImage = loadedImage,
                 };
                 panel.FilterClicked += (s, e) => ApplyFilter(((FilterPanel)s).FilterName);
                 FlowPanelFilters.Controls.Add(panel);
@@ -191,7 +197,9 @@ namespace Pictogram.Pantallas
                 {
                     originalImage = Image.FromFile(openFileDialog.FileName);
                     pb_picture.Image = new Bitmap(originalImage);
+                    pictureBox1.Image = new Bitmap(originalImage);
                     pb_picture.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                     // Calcular y mostrar los histogramas
                     CalculateHistogram((Bitmap)originalImage);
 

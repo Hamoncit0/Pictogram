@@ -29,9 +29,15 @@ namespace Pictogram.Componentes
         {
             InitializeComponent();
             this.Dock = DockStyle.None;
+            pb_filterimage.SizeMode = PictureBoxSizeMode.Zoom;
             pb_filterimage.Click += (s, e) => FilterClicked?.Invoke(this, EventArgs.Empty);
             lb_filtername.Click += (s, e) => FilterClicked?.Invoke(this, EventArgs.Empty);
             this.Click += (s, e) => FilterClicked?.Invoke(this, EventArgs.Empty);
+        }
+        public void setPanelCenter()
+        {
+            pb_filterimage.SizeMode = PictureBoxSizeMode.StretchImage;
+
         }
     }
 }

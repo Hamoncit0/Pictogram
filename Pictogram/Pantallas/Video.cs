@@ -58,7 +58,7 @@ namespace Pictogram.Pantallas
                 // Aplica el filtro seleccionado
                 ApplyFilterToFrame();
 
-                // Convertir el frame a Bitmap
+                // Convertir el frame en un histograma
                 ComputeHistogramFromPictureBox();
 
                 // Liberar el buffer de la imagen después de usarlo
@@ -79,10 +79,15 @@ namespace Pictogram.Pantallas
 
             foreach (string filter in filterNames)
             {
+                string imagePath = @"Videos\" + filter + ".png";
+                System.Drawing.Image loadedImage = System.Drawing.Image.FromFile(imagePath);
+
                 FilterPanel panel = new FilterPanel
                 {
-                    FilterName = filter
+                    FilterName = filter,
+                    FilterImage = loadedImage
                 };
+                panel.setPanelCenter();
                 panel.FilterClicked += (s, e) => ApplyFilter(((FilterPanel)s).FilterName);
                 FlowPanelFilters.Controls.Add(panel);
             }
@@ -98,43 +103,43 @@ namespace Pictogram.Pantallas
             switch (_currentFilter)
             {
                 case "Gris":
-                    ApplyGrayscaleFilter(); // Escala de grises
+                    ApplyGrayscaleFilter(); 
                     break;
                 case "Sepia":
-                    ApplySepiaFilter(); // Filtro sepia
+                    ApplySepiaFilter(); 
                     break;
                 case "Brillo":
-                    ApplyBrightnessFilter(30); // Aumenta el brillo
+                    ApplyBrightnessFilter(30); 
                     break;
                 case "Inverso":
-                    ApplyNegativeFilter(); // Inverso de los colores
+                    ApplyNegativeFilter();
                     break;
                 case "Mosaico":
-                    ApplyMosaicFilter(20); // Inverso de los colores
+                    ApplyMosaicFilter(20); 
                     break;
                 case "Contraste":
-                    ApplyContrastFilter(100); // Inverso de los colores
+                    ApplyContrastFilter(100);
                     break;
                 case "Ojo de pescado":
-                    ApplyFisheyeFilter(); // Inverso de los colores
+                    ApplyFisheyeFilter();
                     break;
                 case "Umbral":
-                    ApplyThresholdFilter(45); // Inverso de los colores
+                    ApplyThresholdFilter(45);
                     break;
                 case "Realce de bordes":
-                    ApplyEdgeEnhancementFilter(); // Inverso de los colores
+                    ApplyEdgeEnhancementFilter(); 
                     break;
                 case "Camara termica":
-                    ApplyThermalCameraFilter(); // Inverso de los colores
+                    ApplyThermalCameraFilter();
                     break;
                 case "Ruido":
-                    ApplyNoiseFilter(100); // Inverso de los colores
+                    ApplyNoiseFilter(100);
                     break;
                 case "Viñeta":
-                    ApplyVignetteFilter(1); // Inverso de los colores
+                    ApplyVignetteFilter(1); 
                     break;
                 case "Espejo":
-                    ApplyPrismaFilter(12); // Inverso de los colores
+                    ApplyPrismaFilter(12); 
                     break;
                 default:
                     break;
@@ -393,7 +398,6 @@ namespace Pictogram.Pantallas
         }
         private void ApplyThresholdFilter(int thresholdValue)
         {
-            // Convertir el frame a un Bitmap
             Bitmap frameBitmap = _frame.ToBitmap();
 
             // Bloquear los bits de la imagen para acceso directo
@@ -441,7 +445,6 @@ namespace Pictogram.Pantallas
             // Desbloquear los bits de la imagen
             frameBitmap.UnlockBits(bmpData);
 
-            // Actualizar el PictureBox
             if (pb_video.InvokeRequired)
             {
                 pb_video.Invoke(new Action(() => pb_video.Image = frameBitmap));
@@ -453,10 +456,8 @@ namespace Pictogram.Pantallas
         }
         private void ApplyEdgeEnhancementFilter()
         {
-            // Convertir el frame a un Bitmap
             Bitmap frameBitmap = _frame.ToBitmap();
 
-            // Bloquear los bits de la imagen para acceso directo
             BitmapData bmpData = frameBitmap.LockBits(
                 new Rectangle(0, 0, frameBitmap.Width, frameBitmap.Height),
                 ImageLockMode.ReadWrite,
@@ -519,13 +520,10 @@ namespace Pictogram.Pantallas
                 }
             }
 
-            // Copiar los datos modificados de vuelta a la imagen
             System.Runtime.InteropServices.Marshal.Copy(resultValues, 0, ptr, bytes);
 
-            // Desbloquear los bits de la imagen
             frameBitmap.UnlockBits(bmpData);
 
-            // Actualizar el PictureBox
             if (pb_video.InvokeRequired)
             {
                 pb_video.Invoke(new Action(() => pb_video.Image = frameBitmap));
@@ -537,7 +535,6 @@ namespace Pictogram.Pantallas
         }
         private void ApplyThermalCameraFilter()
         {
-            // Convertir el frame a un Bitmap
             Bitmap frameBitmap = _frame.ToBitmap();
 
             // Bloquear los bits de la imagen para acceso directo
@@ -552,10 +549,8 @@ namespace Pictogram.Pantallas
             int bytes = Math.Abs(stride) * frameBitmap.Height;
             byte[] pixelValues = new byte[bytes];
 
-            // Copiar los datos de la imagen al array de bytes
             System.Runtime.InteropServices.Marshal.Copy(ptr, pixelValues, 0, bytes);
 
-            // Aplicar el filtro de cámara térmica
             for (int y = 0; y < frameBitmap.Height; y++)
             {
                 for (int x = 0; x < frameBitmap.Width; x++)
@@ -581,13 +576,10 @@ namespace Pictogram.Pantallas
                 }
             }
 
-            // Copiar los datos modificados de vuelta a la imagen
             System.Runtime.InteropServices.Marshal.Copy(pixelValues, 0, ptr, bytes);
 
-            // Desbloquear los bits de la imagen
             frameBitmap.UnlockBits(bmpData);
 
-            // Actualizar el PictureBox
             if (pb_video.InvokeRequired)
             {
                 pb_video.Invoke(new Action(() => pb_video.Image = frameBitmap));
@@ -634,7 +626,6 @@ namespace Pictogram.Pantallas
 
         private void ApplyNoiseFilter(int noiseIntensity)
         {
-            // Convertir el frame a un Bitmap
             Bitmap frameBitmap = _frame.ToBitmap();
 
             // Bloquear los bits de la imagen para acceso directo
@@ -649,13 +640,10 @@ namespace Pictogram.Pantallas
             int bytes = Math.Abs(stride) * frameBitmap.Height;
             byte[] pixelValues = new byte[bytes];
 
-            // Copiar los datos de la imagen al array de bytes
             System.Runtime.InteropServices.Marshal.Copy(ptr, pixelValues, 0, bytes);
 
-            // Crear un generador de números aleatorios
             Random random = new Random();
 
-            // Aplicar el filtro de ruido
             for (int i = 0; i < bytes; i += 3)
             {
                 // Generar un valor de ruido aleatorio
@@ -667,13 +655,10 @@ namespace Pictogram.Pantallas
                 pixelValues[i + 2] = (byte)Math.Min(255, Math.Max(0, pixelValues[i + 2] + noise)); // R
             }
 
-            // Copiar los datos modificados de vuelta a la imagen
             System.Runtime.InteropServices.Marshal.Copy(pixelValues, 0, ptr, bytes);
 
-            // Desbloquear los bits de la imagen
             frameBitmap.UnlockBits(bmpData);
 
-            // Actualizar el PictureBox
             if (pb_video.InvokeRequired)
             {
                 pb_video.Invoke(new Action(() => pb_video.Image = frameBitmap));
@@ -685,10 +670,8 @@ namespace Pictogram.Pantallas
         }
         private void ApplyVignetteFilter(double vignetteStrength)
         {
-            // Convertir el frame a un Bitmap
             Bitmap frameBitmap = _frame.ToBitmap();
 
-            // Bloquear los bits de la imagen para acceso directo
             BitmapData bmpData = frameBitmap.LockBits(
                 new Rectangle(0, 0, frameBitmap.Width, frameBitmap.Height),
                 ImageLockMode.ReadWrite,
@@ -730,13 +713,10 @@ namespace Pictogram.Pantallas
                 }
             }
 
-            // Copiar los datos modificados de vuelta a la imagen
             System.Runtime.InteropServices.Marshal.Copy(pixelValues, 0, ptr, bytes);
 
-            // Desbloquear los bits de la imagen
             frameBitmap.UnlockBits(bmpData);
 
-            // Actualizar el PictureBox
             if (pb_video.InvokeRequired)
             {
                 pb_video.Invoke(new Action(() => pb_video.Image = frameBitmap));
@@ -750,10 +730,8 @@ namespace Pictogram.Pantallas
 
         private void ApplyPrismaFilter(int numSectors)
         {
-            // Convertir el frame a un Bitmap
             Bitmap frameBitmap = _frame.ToBitmap();
 
-            // Bloquear los bits de la imagen para acceso directo
             BitmapData bmpData = frameBitmap.LockBits(
                 new Rectangle(0, 0, frameBitmap.Width, frameBitmap.Height),
                 ImageLockMode.ReadWrite,
@@ -766,7 +744,6 @@ namespace Pictogram.Pantallas
             byte[] pixelValues = new byte[bytes];
             byte[] resultValues = new byte[bytes];
 
-            // Copiar los datos de la imagen al array de bytes
             System.Runtime.InteropServices.Marshal.Copy(ptr, pixelValues, 0, bytes);
 
             // Calcular el centro de la imagen
@@ -820,10 +797,8 @@ namespace Pictogram.Pantallas
                 }
             }
 
-            // Copiar los datos modificados de vuelta a la imagen
             System.Runtime.InteropServices.Marshal.Copy(resultValues, 0, ptr, bytes);
 
-            // Desbloquear los bits de la imagen
             frameBitmap.UnlockBits(bmpData);
 
             // Actualizar el PictureBox

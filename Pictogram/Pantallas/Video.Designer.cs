@@ -63,7 +63,7 @@
             // btn_resetfilter
             // 
             this.btn_resetfilter.Enabled = false;
-            this.btn_resetfilter.Location = new System.Drawing.Point(429, 299);
+            this.btn_resetfilter.Location = new System.Drawing.Point(447, 419);
             this.btn_resetfilter.Name = "btn_resetfilter";
             this.btn_resetfilter.Size = new System.Drawing.Size(120, 38);
             this.btn_resetfilter.TabIndex = 17;
@@ -73,7 +73,7 @@
             // 
             // btn_upload_video
             // 
-            this.btn_upload_video.Location = new System.Drawing.Point(51, 299);
+            this.btn_upload_video.Location = new System.Drawing.Point(69, 419);
             this.btn_upload_video.Name = "btn_upload_video";
             this.btn_upload_video.Size = new System.Drawing.Size(120, 38);
             this.btn_upload_video.TabIndex = 15;
@@ -88,14 +88,14 @@
             this.pb_video.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pb_video.Location = new System.Drawing.Point(37, 48);
             this.pb_video.Name = "pb_video";
-            this.pb_video.Size = new System.Drawing.Size(508, 245);
+            this.pb_video.Size = new System.Drawing.Size(638, 341);
             this.pb_video.TabIndex = 14;
             this.pb_video.TabStop = false;
             // 
             // btn_pause_play
             // 
             this.btn_pause_play.Enabled = false;
-            this.btn_pause_play.Location = new System.Drawing.Point(235, 299);
+            this.btn_pause_play.Location = new System.Drawing.Point(253, 419);
             this.btn_pause_play.Name = "btn_pause_play";
             this.btn_pause_play.Size = new System.Drawing.Size(120, 38);
             this.btn_pause_play.TabIndex = 20;
@@ -111,7 +111,7 @@
             this.groupBox3.Controls.Add(this.pb_histograma);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Location = new System.Drawing.Point(590, 12);
+            this.groupBox3.Location = new System.Drawing.Point(726, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(329, 610);
             this.groupBox3.TabIndex = 23;
@@ -159,19 +159,20 @@
             this.groupBox1.Controls.Add(this.FlowPanelFilters);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Location = new System.Drawing.Point(37, 395);
+            this.groupBox1.Location = new System.Drawing.Point(24, 488);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(547, 224);
+            this.groupBox1.Size = new System.Drawing.Size(676, 245);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtros";
+            this.groupBox1.Text = "Filters";
             // 
             // FlowPanelFilters
             // 
             this.FlowPanelFilters.AutoScroll = true;
-            this.FlowPanelFilters.Location = new System.Drawing.Point(6, 29);
+            this.FlowPanelFilters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowPanelFilters.Location = new System.Drawing.Point(3, 26);
             this.FlowPanelFilters.Name = "FlowPanelFilters";
-            this.FlowPanelFilters.Size = new System.Drawing.Size(535, 189);
+            this.FlowPanelFilters.Size = new System.Drawing.Size(670, 216);
             this.FlowPanelFilters.TabIndex = 14;
             this.FlowPanelFilters.WrapContents = false;
             // 
@@ -180,7 +181,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(155)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(941, 634);
+            this.ClientSize = new System.Drawing.Size(1067, 745);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btn_pause_play);
